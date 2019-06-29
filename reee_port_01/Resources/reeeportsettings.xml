@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reeeportsettings>
+  <GoogleSpreadsheetGenerate>true</GoogleSpreadsheetGenerate>
+  <SpreadsheetURLorID>13nGkfQ9tjwW3Ah6qQZIYQQh4_65118uqZv3gOZegYrc</SpreadsheetURLorID>
+  <XMLGenerate>true</XMLGenerate>
+  <XMLPath>13nGkfQ9tjwW3Ah6qQZIYQQh4_65118uqZv3gOZegYrc</XMLPath>
+  <NoteTypes>Bug, Note, Question</NoteTypes>
+</reeeportsettings>

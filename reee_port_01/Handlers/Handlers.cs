@@ -17,7 +17,7 @@ namespace reee_port_01
 
         public string NoteType { get => notetype; set => notetype = value; }
         public string NoteContent { get => notecontent; set => notecontent = value; }
-        public string NoteRecordtime { get => noterecordtime.ToString("yyyy-MM-dd-HH_mm_ss"); }
+        public string NoteRecordtime { get => noterecordtime.ToString("yyyy-MM-dd-HH_mm"); }
 
         public Note()
         {
@@ -33,24 +33,7 @@ namespace reee_port_01
         
     }
 
-    public class NoteBug : Note
-    {
-        string str;
-        string ar;
-        string er; 
-        bool regr;
-
-
-    }
-
-    public class NoteScreenshot
-    {
-
-    }
-
-    //public delegate void SubmitHandler(string a, string b, string c);
-
-    public class NoteDataXml
+     public class NoteDataXml
     {
         
         string xmlreportpath = Environment.CurrentDirectory + "//ree_" + DateTime.Now.ToString("yyyy-mm-dd-HH_mm_ss") + ".xml";

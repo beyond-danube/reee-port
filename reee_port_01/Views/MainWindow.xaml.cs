@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-
 
 namespace reee_port_01
 {
@@ -23,7 +11,11 @@ namespace reee_port_01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private NoteDataXml sessionree;
+        private XMLHandler sessionree;
+
+        private string spreadsheetID = "13nGkfQ9tjwW3Ah6qQZIYQQh4_65118uqZv3gOZegYrc";
+        private string xmlReportPath = @"D:\Source\repos\reee-port\reee_port_01\bin\Debug";
+        private string xmlDocName = DateTime.Now.ToString("YYYT-MM-DD-HH_mm");
 
         public MainWindow()
         {
@@ -41,14 +33,17 @@ namespace reee_port_01
             NoteType.ItemsSource = NoteTypeComboBox;
             NoteType.SelectedItem = "Bug";
 
-
             NoteField.Focus();
 
+            Settings settings = new Settings(Settings.GetSpreadsheetID(spreadsheetID), xmlReportPath);
 
-            NoteDataXml ree = new NoteDataXml();
+            XMLHandler ree = new XMLHandler();
+            ree.XmlReportPath = Path.Combine(settings.XmlReportPath, xmlDocName);
             ree.CreateXmlReport();
 
             sessionree = ree;
+
+            
 
         }
 
@@ -65,19 +60,15 @@ namespace reee_port_01
             {
 
                 Note note = new Note(NoteType.Text, NoteField.Text);
-                sessionree.WriteToXmlReport(note, sessionree);            
+                sessionree.WriteToXmlReport(note, sessionree);
+
+                GoogleSheetHandler.AppendToSheet(NoteType.Text, NoteField.Text, spreadsheetID);
 
                 NoteField.Clear();
 
             }       
 
         }
-
-        private void NoteType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
 
     }
 }
