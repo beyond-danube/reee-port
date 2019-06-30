@@ -18,7 +18,7 @@ namespace reee_port_01
 
         static string[] Scopes = { SheetsService.Scope.Spreadsheets };
         
-        public static void AppendToSheet(string noteType, string noteContent, string spreadsheetID)
+        public void AppendToSheet(string noteType, string noteContent, string spreadsheetID)
         {
             string ApplicationName = "reeeport";
 

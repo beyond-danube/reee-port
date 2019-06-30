@@ -10,23 +10,20 @@ namespace reee_port_01
 
     public class XMLHandler
     { 
-        string xmlreportpath;
 
-        public string XmlReportPath { get => xmlreportpath; set => xmlreportpath = value; }
-
-        public void CreateXmlReport()
+        public void CreateXmlReport(string xmlPath)
         {
             XDocument xmlreport =
                 new XDocument(
                     new XElement("Report")
                     );
-            xmlreport.Save(xmlreportpath);
+            xmlreport.Save(xmlPath);
 
         }
 
-        public void WriteToXmlReport(Note note, XMLHandler xmldocumnet)
+        public void WriteToXmlReport(Note note, string xmlPath)
         {
-            XDocument xmlreport = XDocument.Load(xmldocumnet.XmlReportPath);
+            XDocument xmlreport = XDocument.Load(xmlPath);
             XElement rootelement = new XElement("Note");
 
             rootelement.Add(new XElement("Time", note.NoteRecordtime));
@@ -34,7 +31,7 @@ namespace reee_port_01
             rootelement.Add(new XElement("Content", note.NoteContent));
 
             xmlreport.Element("Report").Add(rootelement);
-            xmlreport.Save(xmldocumnet.XmlReportPath);
+            xmlreport.Save(xmlPath);
         }
 
     }

@@ -11,11 +11,12 @@ namespace reee_port_01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private XMLHandler sessionree;
-
-        private string spreadsheetID = "13nGkfQ9tjwW3Ah6qQZIYQQh4_65118uqZv3gOZegYrc";
-        private string xmlReportPath = @"D:\Source\repos\reee-port\reee_port_01\bin\Debug";
-        private string xmlDocName = DateTime.Now.ToString("YYYT-MM-DD-HH_mm");
+        private XMLHandler xmlHandler;
+        private Settings settings;
+        private GoogleSheetHandler sheetHandler;
+        private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
+        private string xmlDocName = DateTime.Now.ToString("MM-dd-yyyy_HH_mm_ss") + ".xml";
+        private string xmlReportPath;
 
         public MainWindow()
         {
@@ -27,31 +28,19 @@ namespace reee_port_01
         private void Application_Startup(object sender, EventArgs e)
         {
 
-            //temporaty - populate combobox with data from txt
-            string[] NoteTypeComboBox = File.ReadAllLines("NoteType.txt");
+            settings = Settings.SettingsReader(settingsPath);
 
-            NoteType.ItemsSource = NoteTypeComboBox;
-            NoteType.SelectedItem = "Bug";
+            xmlHandler = new XMLHandler();
+            xmlReportPath = Path.Combine(settings.XmlReportPath, xmlDocName);
+            xmlHandler.CreateXmlReport(xmlReportPath);
 
-            NoteField.Focus();
-
-            Settings settings = new Settings(Settings.GetSpreadsheetID(spreadsheetID), xmlReportPath);
-
-            XMLHandler ree = new XMLHandler();
-            ree.XmlReportPath = Path.Combine(settings.XmlReportPath, xmlDocName);
-            ree.CreateXmlReport();
-
-            sessionree = ree;
-
-            
+            sheetHandler = new GoogleSheetHandler();
+    
+            NoteType.ItemsSource = settings.NoteTypes;
+            NoteType.SelectedIndex = 0;
 
         }
 
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void NoteFiled_KeyDown(Object sender, KeyEventArgs e)
         {
@@ -60,9 +49,9 @@ namespace reee_port_01
             {
 
                 Note note = new Note(NoteType.Text, NoteField.Text);
-                sessionree.WriteToXmlReport(note, sessionree);
 
-                GoogleSheetHandler.AppendToSheet(NoteType.Text, NoteField.Text, spreadsheetID);
+                xmlHandler.WriteToXmlReport(note, xmlReportPath);
+                sheetHandler.AppendToSheet(NoteType.Text, NoteField.Text, settings.SpreadsheetID);
 
                 NoteField.Clear();
 
