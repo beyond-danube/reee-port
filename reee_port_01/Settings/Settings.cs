@@ -25,7 +25,7 @@ namespace reee_port_01
 
         string xmlReportPath;
 
-        public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = value; }
+        public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
         public string XmlReportPath { get => xmlReportPath; set => xmlReportPath = value; }
         public string SheetRange { get => sheetRange; set => sheetRange = value; }
         public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }

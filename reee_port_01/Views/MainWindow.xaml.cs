@@ -11,10 +11,13 @@ namespace reee_port_01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private XMLHandler xmlHandler;
         private Settings settings;
+
+        private XMLHandler xmlHandler;       
         private GoogleSheetHandler sheetHandler;
+
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
+
         private string xmlDocName = DateTime.Now.ToString("MM-dd-yyyy_HH_mm_ss") + ".xml";
         private string xmlReportPath;
 
@@ -22,6 +25,7 @@ namespace reee_port_01
         {
 
             InitializeComponent();
+            this.DataContext = settings;
             
         }
 
@@ -66,11 +70,10 @@ namespace reee_port_01
 
         }
 
-        private void button_Open_Pref(object sender, RoutedEventArgs e)
+        private void OnExit(object sender, EventArgs e)
         {
-            //var preferences = new Views.Preferences();
-                        
-            //preferences.Show();
+            Settings.SettingsSaver(settingsPath, settings);
         }
+
     }
 }
