@@ -16,6 +16,7 @@
         <TextBox x:Name="NoteField" TabIndex="0" Height="25" Margin="0,15,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Column="1" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center"/>
         <TextBlock x:Name="NoteTypeHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="16" HorizontalAlignment="Right" Width="53"/>
         <TextBlock x:Name="NoteFiledHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="62" Grid.Column="1" Height="16"/>
+        <Button Content="Open Pref" Grid.Column="1" HorizontalAlignment="Left" Margin="0,61,0,0" VerticalAlignment="Top" Width="75" Click="button_Open_Pref" BorderBrush="White" Background="White"/>
 
     </Grid>
 </Window>

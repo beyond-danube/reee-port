@@ -18,7 +18,7 @@ namespace reee_port_01
 
         static string[] Scopes = { SheetsService.Scope.Spreadsheets };
         
-        public void AppendToSheet(string noteType, string noteContent, string spreadsheetID)
+        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
         {
             string ApplicationName = "reeeport";
 
@@ -50,7 +50,7 @@ namespace reee_port_01
 
             // The A1 notation of a range to search for a logical table of data.
             // Values will be appended after the last row of the table.
-            string range = "Sheet1!A:B";  // TODO: Update placeholder value.
+            string range = sheetRange;  // TODO: Update placeholder value.
 
             // How the input data should be interpreted.
             SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum valueInputOption = (SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW);  // TODO: Update placeholder value.
@@ -61,7 +61,7 @@ namespace reee_port_01
             // TODO: Assign values to desired properties of `requestBody`:
             Data.ValueRange requestBody = new Data.ValueRange();
 
-            var arr = new string[] { noteType, noteContent};
+            var arr = new string[] { note.NoteType, note.NoteContent, note.NoteRecordtime};
 
             requestBody.Values = new List<IList<object>> { arr };
 

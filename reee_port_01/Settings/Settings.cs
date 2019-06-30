@@ -21,11 +21,13 @@ namespace reee_port_01
         List<string> noteTypes = new List<string>();
 
         string spreadsheetID;
+        string sheetRange;
+
         string xmlReportPath;
 
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = value; }
         public string XmlReportPath { get => xmlReportPath; set => xmlReportPath = value; }
-        //public string SettingsFile { get => settingsFile; set => settingsFile = value; }
+        public string SheetRange { get => sheetRange; set => sheetRange = value; }
         public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }
         public bool GenerateXml { get => generateXml; set => generateXml = value; }
         public List<string> NoteTypes { get => noteTypes; set => noteTypes = value; }
@@ -50,6 +52,16 @@ namespace reee_port_01
             }
 
             else return spreadsheetID;
+        }
+
+        public static string GetSheetRange(string sheetRange)
+        {
+            if (sheetRange == null || sheetRange == "")
+            {
+                return "Sheet1!A:C";
+            }
+
+            else return sheetRange;
         }
 
         public static Settings SettingsReader(string settingsPath)

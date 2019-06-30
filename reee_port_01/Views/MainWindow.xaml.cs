@@ -50,8 +50,15 @@ namespace reee_port_01
 
                 Note note = new Note(NoteType.Text, NoteField.Text);
 
-                xmlHandler.WriteToXmlReport(note, xmlReportPath);
-                sheetHandler.AppendToSheet(NoteType.Text, NoteField.Text, settings.SpreadsheetID);
+                if (settings.GenerateXml == true)
+                {
+                    xmlHandler.WriteToXmlReport(note, xmlReportPath);
+                }
+
+                if (settings.GenarateGoogleSheet == true)
+                {
+                    sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
+                }            
 
                 NoteField.Clear();
 
@@ -59,5 +66,11 @@ namespace reee_port_01
 
         }
 
+        private void button_Open_Pref(object sender, RoutedEventArgs e)
+        {
+            //var preferences = new Views.Preferences();
+                        
+            //preferences.Show();
+        }
     }
 }
