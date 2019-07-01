@@ -19,16 +19,26 @@
             <TextBlock x:Name="NoteTypeHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="16" HorizontalAlignment="Right" Width="53"/>
             <TextBlock x:Name="NoteFiledHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="62" Grid.Column="1" Height="16"/>
             <ToggleButton x:Name="PrefButton" Content="Settings" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" BorderBrush="White" Background="{x:Null}" Margin="1.4,60,0,0" HorizontalContentAlignment="Left" Foreground="Silver"/>
-            <TextBox x:Name="SpreadsheetID" Text="{Binding SpreadsheetID, Mode = TwoWay}" TabIndex="0" Height="25" Margin="45,110,20,-45" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="XMLPath" TabIndex="0" Height="25" Margin="45,156,425,-91" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="XMLPath_subfolder" TabIndex="0" Height="25" Margin="218.4,156,196,-91" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1"/>
-            <TextBox x:Name="XMLPath_documentname" TabIndex="0" Height="25" Margin="447.4,156,20,-91" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1"/>
-            <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="165" Height="16" Grid.Column="1" Margin="0,135,20,-61" />
-            <TextBlock x:Name="XML_Doc_Name_Help" TextWrapping="Wrap" Text="XML Document Name" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="120" Height="16" Grid.Column="1" Margin="0,181,20,-107" />
-            <TextBlock x:Name="XML_Doc_Path_Help" TextWrapping="Wrap" Text="XML Document Path" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="111" Height="16" Grid.Column="1" Margin="0,181,425,-107" />
-            <TextBlock x:Name="XML_Doc_Subfolder_Help" TextWrapping="Wrap" Text="Put to subfolder" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="87" Height="16" Grid.Column="1" Margin="0,181,196,-107" />
+            <TextBox x:Name="SpreadsheetID" Text="{Binding SpreadsheetID, Mode = TwoWay}" TabIndex="0" Height="25" Margin="0,110,198,-45" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Right" Width="382" Foreground="#FF7F7F7F"/>
+            <TextBox x:Name="XmlReportPath" Text="{Binding XmlFolder, Mode = TwoWay}" TabIndex="0" Height="25" Margin="58.4,180,198,-115" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
+            <TextBox x:Name="XMLPath_subfolder" Text="{Binding XmlSubFolder, Mode = TwoWay}" TabIndex="0" Height="25" Margin="453.4,180,20,-115" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
+            <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="165" Height="19" Grid.Column="1" Margin="0,135,198,-64" />
+            <TextBlock x:Name="XML_Doc_Path_Help" TextWrapping="Wrap" Text="XML Document Folder" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="121" Height="16" Grid.Column="1" Margin="0,205,198,-131" />
+            <TextBlock x:Name="XML_Doc_Subfolder_Help" TextWrapping="Wrap" Text="Put to subfolder" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="87" Height="16" Grid.Column="1" Margin="0,205,20,-131" RenderTransformOrigin="-1.648,-0.137" />
+            <Border BorderBrush="{x:Null}" Height="25" Grid.ColumnSpan="2" Margin="20,110,618,-45">
+                <TextBlock x:Name="Spreadsheet_Help" VerticalAlignment="Center" TextWrapping="Wrap" Text="Write to Google Spreadsheet" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="162" Margin="0,3,-0.4,3.8" Grid.ColumnSpan="2" Height="18" />
+            </Border>
+            <CheckBox x:Name="GenarateGoogleSheet" IsChecked="{Binding GenarateGoogleSheet, Mode = TwoWay}" Content="" Grid.Column="1" Margin="25.4,110,0,-45" HorizontalAlignment="Left" Width="28" BorderBrush="#FFABADB3" VerticalAlignment="Center" Foreground="#FF525252"/>
+            <CheckBox x:Name="GenerateXml" IsChecked="{Binding GenerateXml, Mode = TwoWay}" Content="" Grid.Column="1" Margin="25.4,185,0,-110" HorizontalAlignment="Left" Width="28" BorderBrush="#FFABADB3" VerticalAlignment="Center" Foreground="#FF525252"/>
+            <Border BorderBrush="{x:Null}" Height="25" Grid.ColumnSpan="2" Margin="18,181,620,-116">
+                <TextBlock x:Name="XML_Help" VerticalAlignment="Center" TextWrapping="Wrap" Text="Write to Local XML Document" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="162" Margin="0,3,-0.7,3.8" Grid.ColumnSpan="2" Height="18" />
+            </Border>
+            <TextBox x:Name="SheetRange" Text="{Binding SheetRange, Mode=TwoWay}" TabIndex="0" Height="25" Margin="453.4,110,20,-45" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
+            <TextBlock x:Name="SheetRangeHelp" TextWrapping="Wrap" Text="Sheet!Range" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="68" Height="19" Grid.Column="1" Margin="0,135,20,-64" />
+            <TextBox x:Name="XmlDocName" Text="{Binding XmlDocName, Mode=TwoWay}" TabIndex="0" Height="25" Margin="453.4,232,20,-167" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
+            <TextBlock x:Name="XML_Doc_Name_Help" TextWrapping="Wrap" Text="XML Document Name" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="118" Height="16" Grid.Column="1" Margin="0,257,20,-183" RenderTransformOrigin="-1.648,-0.137" />
         </Grid>
-        <Grid Width="800" Height="120">
+        <Grid Width="800" Height="200">
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Setter Property="Visibility" Value="Collapsed"/>

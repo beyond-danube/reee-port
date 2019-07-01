@@ -11,9 +11,8 @@ using System.Xml.Serialization;
 namespace reee_port_01
 {
     [Serializable]
-    public class Settings
+    public class ReeeportSettings
     {
-        //string settingsFile = @"Resources\reeeportsettings.xml";
 
         bool genarateGoogleSheet;
         bool generateXml;
@@ -25,21 +24,23 @@ namespace reee_port_01
 
         string xmlReportPath;
 
+        public string XmlFolder { get; set; }
+        public string XmlSubFolder { get; set; }
+        public string XmlDocName { get; set; }
+
+
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
-        public string XmlReportPath { get => xmlReportPath; set => xmlReportPath = value; }
+        public string XmlReportPath { get => xmlReportPath; set => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); }
         public string SheetRange { get => sheetRange; set => sheetRange = value; }
         public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }
         public bool GenerateXml { get => generateXml; set => generateXml = value; }
         public List<string> NoteTypes { get => noteTypes; set => noteTypes = value; }
 
-        public Settings()
-        { }
-
-        public Settings(string spreadsheetID, string xmlReportPath)
+        public ReeeportSettings()
         {
-            this.spreadsheetID = GetSpreadsheetID(spreadsheetID);
-            this.xmlReportPath = xmlReportPath;
+
         }
+
 
         public static string GetSpreadsheetID(string spreadsheetID)
         {
@@ -64,22 +65,22 @@ namespace reee_port_01
             else return sheetRange;
         }
 
-        public static Settings SettingsReader(string settingsPath)
+        public static ReeeportSettings SettingsReader(string settingsPath)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer serializer = new XmlSerializer(typeof(ReeeportSettings));
 
-            Settings settings;
+            ReeeportSettings settings;
 
             using (Stream reader = new FileStream(settingsPath, FileMode.Open))
             {
-                return settings = (Settings)serializer.Deserialize(reader);
+                return settings = (ReeeportSettings)serializer.Deserialize(reader);
                 
             }
         }
 
-        public static void SettingsSaver(string settingsPath, Settings settings)
+        public static void SettingsSaver(string settingsPath, ReeeportSettings settings)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer serializer = new XmlSerializer(typeof(ReeeportSettings));
             var xml = "";
 
             using (var sw = new StringWriter())

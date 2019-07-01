@@ -11,15 +11,13 @@ namespace reee_port_01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Settings settings;
+        private ReeeportSettings settings;
 
         private XMLHandler xmlHandler;       
         private GoogleSheetHandler sheetHandler;
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
 
-        private string xmlDocName = DateTime.Now.ToString("MM-dd-yyyy_HH_mm_ss") + ".xml";
-        private string xmlReportPath;
 
         public MainWindow()
         {
@@ -32,12 +30,8 @@ namespace reee_port_01
         private void Application_Startup(object sender, EventArgs e)
         {
 
-            settings = Settings.SettingsReader(settingsPath);
-
+            settings = ReeeportSettings.SettingsReader(settingsPath);
             xmlHandler = new XMLHandler();
-            xmlReportPath = Path.Combine(settings.XmlReportPath, xmlDocName);
-            xmlHandler.CreateXmlReport(xmlReportPath);
-
             sheetHandler = new GoogleSheetHandler();
     
             NoteType.ItemsSource = settings.NoteTypes;
@@ -56,7 +50,17 @@ namespace reee_port_01
 
                 if (settings.GenerateXml == true)
                 {
-                    xmlHandler.WriteToXmlReport(note, xmlReportPath);
+                    if (!Directory.Exists(Path.Combine(settings.XmlFolder, settings.XmlSubFolder)))
+                    {
+                        Directory.CreateDirectory(Path.Combine(settings.XmlFolder, settings.XmlSubFolder));
+                    }
+
+                    if (!File.Exists(settings.XmlReportPath))
+                    {
+                        xmlHandler.CreateXmlReport(settings.XmlReportPath);
+                    }
+
+                    xmlHandler.WriteToXmlReport(note, settings.XmlReportPath);
                 }
 
                 if (settings.GenarateGoogleSheet == true)
@@ -72,7 +76,7 @@ namespace reee_port_01
 
         private void OnExit(object sender, EventArgs e)
         {
-            Settings.SettingsSaver(settingsPath, settings);
+            ReeeportSettings.SettingsSaver(settingsPath, settings);
         }
 
     }
