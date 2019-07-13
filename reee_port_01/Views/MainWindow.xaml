@@ -37,8 +37,12 @@
             <TextBlock x:Name="SheetRangeHelp" TextWrapping="Wrap" Text="Sheet!Range" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="68" Height="19" Grid.Column="1" Margin="0,135,20,-64" />
             <TextBox x:Name="XmlDocName" Text="{Binding XmlDocName, Mode=TwoWay}" TabIndex="0" Height="25" Margin="453.4,232,20,-167" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
             <TextBlock x:Name="XML_Doc_Name_Help" TextWrapping="Wrap" Text="XML Document Name" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="118" Height="16" Grid.Column="1" Margin="0,257,20,-183" RenderTransformOrigin="-1.648,-0.137" />
+            <TextBox x:Name="NoteTypesString" Text="{Binding NoteTypesString, Mode=TwoWay}" TabIndex="0" Height="25" Margin="129.4,278,20,-213" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.Column="1" Foreground="#FF7F7F7F"/>
+            <Border BorderBrush="{x:Null}" Height="25" Grid.ColumnSpan="2" Margin="18,278,509,-213">
+                <TextBlock x:Name="NoteTypes_Help" VerticalAlignment="Center" TextWrapping="Wrap" Text="Note Types (comma separated, applied on restart)" Foreground="#FF7F7F7F" Margin="0,3,-0.2,3.8" Grid.ColumnSpan="2" Height="18" />
+            </Border>
         </Grid>
-        <Grid Width="800" Height="200">
+        <Grid Width="800" Height="230">
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
                     <Setter Property="Visibility" Value="Collapsed"/>

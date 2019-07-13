@@ -17,30 +17,27 @@ namespace reee_port_01
         bool genarateGoogleSheet;
         bool generateXml;
 
-        List<string> noteTypes = new List<string>();
-
         string spreadsheetID;
         string sheetRange;
+        string xmlfolder;
 
         string xmlReportPath;
 
-        public string XmlFolder { get; set; }
+        string noteTypesString;
+
+        public string XmlFolder { get => GetXMLPath(xmlfolder); set => xmlfolder = value; }
         public string XmlSubFolder { get; set; }
         public string XmlDocName { get; set; }
 
 
+
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
         public string XmlReportPath { get => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); set => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); }
-        public string SheetRange { get => sheetRange; set => sheetRange = value; }
+        public string SheetRange { get => GetSheetRange(sheetRange); set => sheetRange = value; }
         public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }
         public bool GenerateXml { get => generateXml; set => generateXml = value; }
-        public List<string> NoteTypes { get => noteTypes; set => noteTypes = value; }
-
-        public ReeeportSettings()
-        {
-
-        }
-
+        public string NoteTypesString { get => noteTypesString; set => noteTypesString = value; }
+        public string[] NoteTypesArr { get => NoteTypesString.Split(',').ToArray(); }
 
         public static string GetSpreadsheetID(string spreadsheetID)
         {
@@ -57,13 +54,24 @@ namespace reee_port_01
 
         public static string GetSheetRange(string sheetRange)
         {
-            if (sheetRange == null || sheetRange == "")
+            if (string.IsNullOrWhiteSpace(sheetRange) || !sheetRange.Contains("!") || !sheetRange.Contains(":"))
             {
                 return "Sheet1!A:C";
             }
 
             else return sheetRange;
         }
+
+        public static string GetXMLPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
+            {
+                return Directory.GetCurrentDirectory();
+            }
+
+            else return path;
+        }
+
 
         public static ReeeportSettings SettingsReader(string settingsPath)
         {
@@ -73,8 +81,7 @@ namespace reee_port_01
 
             using (Stream reader = new FileStream(settingsPath, FileMode.Open))
             {
-                return settings = (ReeeportSettings)serializer.Deserialize(reader);
-                
+                return settings = (ReeeportSettings)serializer.Deserialize(reader);                
             }
         }
 

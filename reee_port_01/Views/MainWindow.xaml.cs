@@ -34,7 +34,7 @@ namespace reee_port_01
             xmlHandler = new XMLHandler();
             sheetHandler = new GoogleSheetHandler();
     
-            NoteType.ItemsSource = settings.NoteTypes;
+            NoteType.ItemsSource = settings.NoteTypesArr;
             NoteType.SelectedIndex = 0;
 
         }
@@ -47,21 +47,6 @@ namespace reee_port_01
             {
 
                 Note note = new Note(NoteType.Text, NoteField.Text);
-
-                //if (settings.GenerateXml == true)
-                //{
-                //    if (!File.Exists(settings.XmlReportPath))
-                //    {
-                //        if (!Directory.Exists(Path.Combine(settings.XmlFolder, settings.XmlSubFolder)))
-                //        {
-                //            Directory.CreateDirectory(Path.Combine(settings.XmlFolder, settings.XmlSubFolder));
-                //        }
-
-                //        xmlHandler.CreateXmlReport(settings.XmlReportPath);
-                //    }
-
-                //    xmlHandler.WriteToXmlReport(note, settings.XmlReportPath);
-                //}
 
                 if (settings.GenerateXml == true)
                 {
