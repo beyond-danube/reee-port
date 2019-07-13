@@ -43,15 +43,15 @@ namespace TestConsoleApp
             //settingsfile.Save("ttt.xml");
 
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer serializer = new XmlSerializer(typeof(ReeeportSettings));
 
             // Declare an object variable of the type to be deserialized.
-            Settings i;
+            ReeeportSettings i;
 
             using (Stream reader = new FileStream("ttt.xml", FileMode.Open))
             {
                 // Call the Deserialize method to restore the object's state.
-                i = (Settings)serializer.Deserialize(reader);
+                i = (ReeeportSettings)serializer.Deserialize(reader);
             }
 
             Console.WriteLine(i.SpreadsheetID);

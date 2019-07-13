@@ -30,7 +30,7 @@ namespace reee_port_01
 
 
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
-        public string XmlReportPath { get => xmlReportPath; set => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); }
+        public string XmlReportPath { get => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); set => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); }
         public string SheetRange { get => sheetRange; set => sheetRange = value; }
         public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }
         public bool GenerateXml { get => generateXml; set => generateXml = value; }
