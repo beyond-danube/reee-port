@@ -134,9 +134,9 @@
     <Resource Include="Resources\reee.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\reeeportsettings.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <None Include="Resources\reeeportsettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
