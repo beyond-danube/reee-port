@@ -14,29 +14,13 @@ namespace reee_port_01
     public class ReeeportSettings
     {
 
-        bool genarateGoogleSheet;
-        bool generateXml;
-
         string spreadsheetID;
         string sheetRange;
-        string xmlfolder;
 
-        string xmlReportPath;
-
-        string noteTypesString;
-
-        public string XmlFolder { get => GetXMLPath(xmlfolder); set => xmlfolder = value; }
-        public string XmlSubFolder { get; set; }
-        public string XmlDocName { get; set; }
-
-
-
+        public bool GenarateGoogleSheet { get; set; }
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
-        public string XmlReportPath { get => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); set => xmlReportPath = Path.Combine(XmlFolder, XmlSubFolder, XmlDocName + ".xml"); }
         public string SheetRange { get => GetSheetRange(sheetRange); set => sheetRange = value; }
-        public bool GenarateGoogleSheet { get => genarateGoogleSheet; set => genarateGoogleSheet = value; }
-        public bool GenerateXml { get => generateXml; set => generateXml = value; }
-        public string NoteTypesString { get => noteTypesString; set => noteTypesString = value; }
+        public string NoteTypesString { get; set; }
         public string[] NoteTypesArr { get => NoteTypesString.Split(',').ToArray(); }
 
         public static string GetSpreadsheetID(string spreadsheetID)
@@ -61,17 +45,6 @@ namespace reee_port_01
 
             else return sheetRange;
         }
-
-        public static string GetXMLPath(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
-            {
-                return Directory.GetCurrentDirectory();
-            }
-
-            else return path;
-        }
-
 
         public static ReeeportSettings SettingsReader(string settingsPath)
         {
