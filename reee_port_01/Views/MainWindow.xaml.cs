@@ -48,17 +48,6 @@ namespace reee_port_01
 
                 Note note = new Note(NoteType.Text, NoteField.Text);
 
-                if (settings.GenerateXml == true)
-                {
-                    if (!File.Exists(settings.XmlReportPath))
-                    {
-                        Directory.CreateDirectory(Path.Combine(settings.XmlFolder, settings.XmlSubFolder));
-                        xmlHandler.CreateXmlReport(settings.XmlReportPath);
-                    }
-
-                    xmlHandler.WriteToXmlReport(note, settings.XmlReportPath);
-                }
-
                 if (settings.GenarateGoogleSheet == true)
                 {
                     sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
