@@ -35,6 +35,8 @@ namespace reee_port_01
             NoteType.ItemsSource = settings.NoteTypesArr;
             NoteType.SelectedIndex = 0;
 
+            MainWindow mw = this;
+            mw.Topmost = settings.AlwaysOnTop;
         }
 
 
@@ -62,5 +64,10 @@ namespace reee_port_01
             ReeeportSettings.SettingsSaver(settingsPath, settings);
         }
 
+        public void Application_Deactivated(object sender, EventArgs e)
+        {
+            MainWindow mw = this;
+            mw.Topmost = settings.AlwaysOnTop;
+        }
     }
 }

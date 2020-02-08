@@ -17,6 +17,7 @@ namespace reee_port_01
         string spreadsheetID;
         string sheetRange;
 
+        public bool AlwaysOnTop { get; set; }
         public bool GenarateGoogleSheet { get; set; }
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
         public string SheetRange { get => GetSheetRange(sheetRange); set => sheetRange = value; }
