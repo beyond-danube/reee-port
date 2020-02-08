@@ -89,6 +89,7 @@
     </Page>
     <Compile Include="Handlers\GoogleSheetsHandler.cs" />
     <Compile Include="Notes\Note.cs" />
+    <Compile Include="Handlers\XMLHandler.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
