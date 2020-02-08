@@ -50,7 +50,15 @@ namespace reee_port_01
 
                 if (settings.GenarateGoogleSheet == true)
                 {
-                    sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
+                    try
+                    {
+                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Cannot write note to spreadsheet.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.", "Cannot Write to Spreadsheet");                     
+                    }
+                    
                 }            
 
                 NoteField.Clear();
