@@ -12,8 +12,7 @@ namespace reee_port_01
     public partial class MainWindow : Window
     {
         private ReeeportSettings settings;
-
-        private XMLHandler xmlHandler;       
+  
         private GoogleSheetHandler sheetHandler;
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
@@ -31,7 +30,6 @@ namespace reee_port_01
         {
 
             settings = ReeeportSettings.SettingsReader(settingsPath);
-            xmlHandler = new XMLHandler();
             sheetHandler = new GoogleSheetHandler();
     
             NoteType.ItemsSource = settings.NoteTypesArr;
