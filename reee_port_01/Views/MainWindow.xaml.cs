@@ -22,7 +22,7 @@ namespace reee_port_01
         {
 
             InitializeComponent();
-            this.DataContext = settings;
+            DataContext = settings;
             
         }
 
@@ -40,7 +40,7 @@ namespace reee_port_01
         }
 
 
-        private void NoteFiled_KeyDown(Object sender, KeyEventArgs e)
+        private void NoteFiled_KeyDown(object sender, KeyEventArgs e)
         {
  
             if (e.Key == Key.Enter && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
@@ -56,7 +56,7 @@ namespace reee_port_01
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Cannot write note to spreadsheet.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.", "Cannot Write to Spreadsheet");                     
+                        MessageBox.Show("Cannot write note to spreadsheet.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Spreadsheet");                     
                     }
                     
                 }            
@@ -77,5 +77,12 @@ namespace reee_port_01
             MainWindow mw = this;
             mw.Topmost = settings.AlwaysOnTop;
         }
+
+        private void OpenPrefs(object sender, RoutedEventArgs e)
+        {
+            PreferencesWindow prefs = new PreferencesWindow();
+            prefs.Show();
+        }
+
     }
 }

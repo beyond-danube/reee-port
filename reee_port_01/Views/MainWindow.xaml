@@ -5,43 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:reee_port_01"
         mc:Ignorable="d"
-        Title="reee: port" Initialized="Application_Startup" ResizeMode="CanMinimize" Deactivated="Application_Deactivated"
-        SizeToContent="WidthAndHeight" Closed="OnExit" Closing="OnExit">
+        Title="reee: port" Initialized="Application_Startup" MaxHeight="120" MinHeight="120" MinWidth="500" Width="700" Deactivated="Application_Deactivated" Closed="OnExit" Closing="OnExit">
 
     <StackPanel>
-        <Grid x:Name="MainGrid" Width="800" Height="90">
+        <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="640"/>
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="NoteType" TabIndex="1" Margin="20,15,20,0" VerticalAlignment="Top" Height="25" FontSize="14" Foreground="Black" BorderBrush="{x:Null}" Background="{x:Null}" VerticalContentAlignment="Center"/>
             <TextBox x:Name="NoteField" TabIndex="0" Height="25" Margin="159,15,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="NoteTypeHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="16" HorizontalAlignment="Right" Width="53"/>
-            <TextBlock x:Name="NoteFiledHelp" Margin="0,40,20,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="62" Grid.Column="1" Height="16"/>
-            <ToggleButton x:Name="PrefButton" Content="Settings" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" BorderBrush="White" Background="{x:Null}" Margin="1,60,0,0" HorizontalContentAlignment="Left" Foreground="Silver" Height="19"/>
-            <TextBox x:Name="SpreadsheetID" Text="{Binding SpreadsheetID, Mode = TwoWay}" TabIndex="0" Margin="20,135,0,-70" TextWrapping="Wrap" FontSize="14" AutoWordSelection="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="380" Foreground="#FF7F7F7F" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,160,399,-90" HorizontalAlignment="Right" Grid.Column="1" />
-            <TextBlock x:Name="Spreadsheet_Help" VerticalAlignment="Top" TextWrapping="Wrap" Text="Write to Google Spreadsheet" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="191" Margin="20,113,0,-43" Height="20" FontSize="14" Grid.ColumnSpan="2" />
-            <CheckBox x:Name="GenarateGoogleSheet" IsChecked="{Binding GenarateGoogleSheet, Mode = TwoWay}" Content="" Margin="44,115,0,-40" HorizontalAlignment="Left" Width="28" BorderBrush="#FFABADB3" VerticalAlignment="Center" Foreground="#FF525252" Height="15" Grid.Column="1"/>
-            <TextBox x:Name="SheetRange" Text="{Binding SheetRange, Mode=TwoWay}" TabIndex="0" Height="25" Margin="245,135,285,-70" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" Grid.Column="1" />
-            <TextBlock x:Name="SheetRangeHelp" TextWrapping="Wrap" Text="Sheet!Range" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,160,285,-90" Grid.Column="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" />
-            <TextBlock x:Name="NoteTypes" VerticalAlignment="Center" TextWrapping="Wrap" Text="Note Types" Foreground="#FF7F7F7F" Margin="20,184,44,-114" Height="20" FontSize="14" />
-            <TextBox x:Name="NoteTypesString" Text="{Binding NoteTypesString, Mode=TwoWay}" TabIndex="0" Height="25" Margin="20,204,400,-139" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" Grid.ColumnSpan="2" />
-            <TextBlock x:Name="NoteTypes_Help" TextWrapping="Wrap" Text="Comma separated, applied on restart" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,229,400,-159" Grid.Column="1" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="AlwaysOnTop_Help" VerticalAlignment="Top" TextWrapping="Wrap" Text="Always on Top" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="96" Margin="20,276,0,-206" Height="20" FontSize="14" />
-            <CheckBox x:Name="AlwaysOnTop" IsChecked="{Binding AlwaysOnTop, Mode=TwoWay}" Content="" Margin="121,279,0,-204" HorizontalAlignment="Left" Width="28" BorderBrush="#FFABADB3" VerticalAlignment="Center" Foreground="#FF525252" Height="15"/>
-        </Grid>
-        <Grid Width="800" Height="230">
-            <Grid.Style>
-                <Style TargetType="{x:Type Grid}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=PrefButton, Path=IsChecked}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
+            <TextBlock x:Name="NoteTypeHelp" Margin="0,42,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="18" HorizontalAlignment="Right" Width="53"/>
+            <TextBlock x:Name="NoteFiledHelp" Margin="0,42,19.6,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="65" Grid.Column="1" Height="18"/>
+            <Button x:Name="Settings" Content="Settings" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" BorderBrush="White" Background="{x:Null}" Margin="0,40,0,0" HorizontalContentAlignment="Left" Foreground="Silver" Height="20" Click="OpenPrefs"/>
         </Grid>
     </StackPanel>
 </Window>
