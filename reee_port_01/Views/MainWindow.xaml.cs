@@ -17,12 +17,14 @@ namespace reee_port_01
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
 
+        PreferencesWindow pw = new PreferencesWindow();
 
         public MainWindow()
         {
 
             InitializeComponent();
             DataContext = settings;
+            pw.DataContext = DataContext;
             
         }
 
@@ -80,8 +82,7 @@ namespace reee_port_01
 
         private void OpenPrefs(object sender, RoutedEventArgs e)
         {
-            PreferencesWindow prefs = new PreferencesWindow();
-            prefs.Show();
+            pw.Show();
         }
 
     }

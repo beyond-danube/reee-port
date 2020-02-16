@@ -23,11 +23,15 @@ namespace reee_port_01
         public PreferencesWindow()
         {
             InitializeComponent();
-            DataContext = (ReeeportSettings)Application.Current.MainWindow.DataContext;
 
             PreferencesWindow pw = this;
             pw.Topmost = true;
         }
 
+        private void Closing_Event(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+        }
     }
 }

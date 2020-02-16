@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:reee_port_01"
         mc:Ignorable="d"
-        Title="reee: preferences" Height="270" Width="600" ResizeMode="CanMinimize">
+        Title="reee: preferences" Height="270" Width="600" ResizeMode="CanMinimize" Closing="Closing_Event">
     <Grid x:Name="PrefWindowGrid" Margin="0,0,0.6,-0.2">
         <TextBlock x:Name="Spreadsheet_setting_info" VerticalAlignment="Top" TextWrapping="Wrap" Text="Google Spreadsheet settings" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="200" Margin="25,25,0,0" Height="20" FontSize="14" />
         <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,75,110,0" HorizontalAlignment="Right" />
