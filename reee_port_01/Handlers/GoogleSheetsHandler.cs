@@ -6,21 +6,25 @@ using Google.Apis.Sheets.v4;
 using System.Threading;
 using Google.Apis.Util.Store;
 using Google.Apis.Services;
-
-using Data = Google.Apis.Sheets.v4.Data;
+using Google.Apis.Sheets.v4.Data;
+using static Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource;
 
 namespace reee_port_01
 {
     public class GoogleSheetHandler
     {
+        private readonly string ApplicationName;
+        private readonly UserCredential credential;
+        private SheetsService service;
+
+        private ValueRange RequestBody { get; set; }
+        private AppendRequest Request { get; set; }
 
         static string[] Scopes = { SheetsService.Scope.Spreadsheets };
-        
-        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
-        {
-            string ApplicationName = "reeeport";
 
-            UserCredential credential;
+        public GoogleSheetHandler()
+        {
+            ApplicationName = "reeeport";
 
             using (var stream = new FileStream(@"Resources\credentials.json", FileMode.Open, FileAccess.Read))
             {
@@ -33,32 +37,36 @@ namespace reee_port_01
                     new FileDataStore(credPath, true)).Result;
             }
 
-            var service = new SheetsService(new BaseClientService.Initializer()
+            RequestBody = new ValueRange();
+        }
+
+        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
+        {
+            if (service == null)
             {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
+                service = new SheetsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+            }
 
-
+ 
             string spreadsheetId = spreadsheetID;
-
             string range = sheetRange;
 
-            SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum valueInputOption = (SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW);  // TODO: Update placeholder value.
-
-            SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum insertDataOption = (SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS);  // TODO: Update placeholder value.
-
-            Data.ValueRange requestBody = new Data.ValueRange();
+            AppendRequest.ValueInputOptionEnum valueInputOption = AppendRequest.ValueInputOptionEnum.RAW;
+            AppendRequest.InsertDataOptionEnum insertDataOption = AppendRequest.InsertDataOptionEnum.INSERTROWS;
 
             var arr = new string[] { note.NoteType, note.NoteContent, note.NoteRecordtime};
 
-            requestBody.Values = new List<IList<object>> { arr };
+            RequestBody.Values = new List<IList<object>> { arr };
 
-            SpreadsheetsResource.ValuesResource.AppendRequest request = service.Spreadsheets.Values.Append(requestBody, spreadsheetId, range);
-            request.ValueInputOption = valueInputOption;
-            request.InsertDataOption = insertDataOption;
+            Request = service.Spreadsheets.Values.Append(RequestBody, spreadsheetId, range);
+            Request.ValueInputOption = valueInputOption;
+            Request.InsertDataOption = insertDataOption;
 
-            request.Execute();
+            Request.Execute();
 
         }
     }
