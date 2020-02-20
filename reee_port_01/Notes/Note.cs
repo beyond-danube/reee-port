@@ -11,13 +11,11 @@ namespace reee_port_01
 {
     public class Note
     {
-        string notetype;
-        string notecontent;
         DateTime noterecordtime;
 
-        public string NoteType { get => notetype; set => notetype = value; }
-        public string NoteContent { get => notecontent; set => notecontent = value; }
-        public string NoteRecordtime { get => noterecordtime.ToString("yyyy-MM-dd-HH_mm"); }
+        public string NoteType { get; set; }
+        public string NoteContent { get; set; }
+        public string NoteRecordtime { get => noterecordtime.ToString("yyyy/MM/dd HH:mm"); }
 
         public Note()
         {
@@ -27,11 +25,10 @@ namespace reee_port_01
         public Note(string notetype, string notecontent)
             : this()
         {
-            this.notetype = notetype;
-            this.notecontent = notecontent;
+            NoteType = notetype;
+            NoteContent = notecontent;
         }
         
     }
-
     
 }
