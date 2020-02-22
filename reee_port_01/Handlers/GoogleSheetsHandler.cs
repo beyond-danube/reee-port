@@ -14,7 +14,7 @@ namespace reee_port_01
     public class GoogleSheetHandler
     {
         private readonly string ApplicationName;
-        private readonly UserCredential credential;
+        private UserCredential credential;
         private SheetsService service;
 
         private ValueRange RequestBody { get; set; }
@@ -25,6 +25,16 @@ namespace reee_port_01
         public GoogleSheetHandler()
         {
             ApplicationName = "reeeport";
+            RequestBody = new ValueRange();
+        }
+
+        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
+        {
+            service = new SheetsService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
 
             using (var stream = new FileStream(@"Resources\credentials.json", FileMode.Open, FileAccess.Read))
             {
@@ -37,21 +47,6 @@ namespace reee_port_01
                     new FileDataStore(credPath, true)).Result;
             }
 
-            RequestBody = new ValueRange();
-        }
-
-        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
-        {
-            if (service == null)
-            {
-                service = new SheetsService(new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = ApplicationName,
-                });
-            }
-
- 
             string spreadsheetId = spreadsheetID;
             string range = sheetRange;
 
