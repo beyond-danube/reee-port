@@ -14,7 +14,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="NoteType" TabIndex="1" Margin="20,15,20,0" VerticalAlignment="Top" Height="25" FontSize="14" Foreground="Black" BorderBrush="{x:Null}" Background="{x:Null}" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="NoteField" TabIndex="0" Height="25" Margin="159,15,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="NoteField" TabIndex="0" Height="25" Margin="159,15,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" KeyDown="NoteFiled_KeyDown" AutoWordSelection="True" VerticalContentAlignment="Center" Grid.ColumnSpan="2" PreviewDragOver="NoteField_DragOver" Drop="NoteField_Drop"/>
             <TextBlock x:Name="NoteTypeHelp" Margin="0,42,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="18" HorizontalAlignment="Right" Width="53"/>
             <TextBlock x:Name="NoteFiledHelp" Margin="0,42,19.6,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="65" Grid.Column="1" Height="18"/>
             <Button x:Name="Settings" Content="Settings" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" BorderBrush="White" Background="{x:Null}" Margin="0,40,0,0" HorizontalContentAlignment="Left" Foreground="Silver" Height="20" Click="OpenPrefs"/>

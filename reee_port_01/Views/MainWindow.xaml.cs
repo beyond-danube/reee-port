@@ -19,6 +19,8 @@ namespace reee_port_01
 
         PreferencesWindow pw = new PreferencesWindow();
 
+        private string[] draggedFiles;
+
         public MainWindow()
         {
 
@@ -48,7 +50,7 @@ namespace reee_port_01
             if (e.Key == Key.Enter && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
             {
 
-                Note note = new Note(NoteType.Text, NoteField.Text);
+                Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles);
 
                 sheetHandler = sheetHandler == null ? new GoogleSheetHandler() : sheetHandler;
 
@@ -82,5 +84,14 @@ namespace reee_port_01
             pw.Show();
         }
 
+        private void NoteField_DragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void NoteField_Drop(object sender, DragEventArgs e)
+        {
+            draggedFiles = e.Data.GetData(DataFormats.FileDrop) as string[];
+        }
     }
 }

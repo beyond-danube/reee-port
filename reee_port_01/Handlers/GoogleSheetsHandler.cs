@@ -39,7 +39,7 @@ namespace reee_port_01
             AppendRequest.ValueInputOptionEnum valueInputOption = AppendRequest.ValueInputOptionEnum.RAW;
             AppendRequest.InsertDataOptionEnum insertDataOption = AppendRequest.InsertDataOptionEnum.INSERTROWS;
 
-            var arr = new string[] { note.NoteType, note.NoteContent, note.NoteRecordtime};
+            var arr = new string[] { note.NoteType, note.NoteContent, note.Id, note.NoteRecordtime};
 
             RequestBody.Values = new List<IList<object>> { arr };
 
