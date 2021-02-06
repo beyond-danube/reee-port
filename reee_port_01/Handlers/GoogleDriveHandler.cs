@@ -39,7 +39,7 @@ namespace reee_port_01
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 request = service.Files.Create(file, stream, "");
-                request.UploadAsync();
+                request.UploadAsync().Wait();
             }
 
         }

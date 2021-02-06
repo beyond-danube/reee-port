@@ -60,7 +60,14 @@ namespace reee_port_01
                 try
                 {
                     sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
-                    driveHandler.UploadFile(note.AttachedFiles[0], settings.DriveFolderID);
+
+                    if (note.AttachedFiles.Length > 0)
+                    {
+                        foreach (var file in note.AttachedFiles)
+                        {
+                            driveHandler.UploadFile(file, settings.DriveFolderID);
+                        }
+                    }
                 }
                 catch (Exception)
                 {
