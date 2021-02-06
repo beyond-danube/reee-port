@@ -7,7 +7,7 @@ using static Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource;
 
 namespace reee_port_01
 {
-    public class GoogleSheetHandler : GoogleHandler
+    public class GoogleHandlerSheet : GoogleHandler
     {
         private ValueRange RequestBody { get; set; }
         private AppendRequest Request { get; set; }
@@ -15,7 +15,7 @@ namespace reee_port_01
         private SheetsService service;
 
 
-        public GoogleSheetHandler()
+        public GoogleHandlerSheet()
         {
             service = new SheetsService(new BaseClientService.Initializer()
             {

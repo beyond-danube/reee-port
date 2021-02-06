@@ -7,11 +7,11 @@ using File = Google.Apis.Drive.v3.Data.File;
 
 namespace reee_port_01
 {
-    public class GoogleDriveHandler : GoogleHandler
+    public class GoogleHandlerDrive : GoogleHandler
     {
         private DriveService service;
 
-        public GoogleDriveHandler()
+        public GoogleHandlerDrive()
         {
             service = new DriveService(new BaseClientService.Initializer()
             {
