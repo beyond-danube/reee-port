@@ -13,8 +13,8 @@ namespace reee_port_01
     {
         private ReeeportSettings settings;
   
-        private GoogleSheetHandler sheetHandler;
-        private GoogleDriveHandler driveHandler;
+        private GoogleHandlerSheet sheetHandler;
+        private GoogleHandlerDrive driveHandler;
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
 
@@ -54,8 +54,8 @@ namespace reee_port_01
 
                 Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles);
 
-                sheetHandler = sheetHandler == null ? new GoogleSheetHandler() : sheetHandler;
-                driveHandler = driveHandler == null ? new GoogleDriveHandler() : driveHandler;
+                sheetHandler = sheetHandler == null ? new GoogleHandlerSheet() : sheetHandler;
+                driveHandler = driveHandler == null ? new GoogleHandlerDrive() : driveHandler;
 
                 try
                 {
