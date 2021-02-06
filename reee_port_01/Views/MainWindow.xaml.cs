@@ -14,6 +14,7 @@ namespace reee_port_01
         private ReeeportSettings settings;
   
         private GoogleSheetHandler sheetHandler;
+        private GoogleDriveHandler driveHandler;
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
 
@@ -35,7 +36,8 @@ namespace reee_port_01
 
             settings = ReeeportSettings.SettingsReader(settingsPath);
             sheetHandler = null;
-    
+            driveHandler = null;
+
             NoteType.ItemsSource = settings.NoteTypesArr;
             NoteType.SelectedIndex = 0;
 
@@ -53,10 +55,12 @@ namespace reee_port_01
                 Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles);
 
                 sheetHandler = sheetHandler == null ? new GoogleSheetHandler() : sheetHandler;
+                driveHandler = driveHandler == null ? new GoogleDriveHandler() : driveHandler;
 
                 try
                 {
                     sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
+                    driveHandler.UploadFile(note.AttachedFiles[0], settings.DriveFolderID);
                 }
                 catch (Exception)
                 {

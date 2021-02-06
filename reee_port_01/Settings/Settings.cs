@@ -20,6 +20,7 @@ namespace reee_port_01
         public bool AlwaysOnTop { get; set; }
         public bool GenarateGoogleSheet { get; set; }
         public string SpreadsheetID { get => spreadsheetID; set => spreadsheetID = GetSpreadsheetID(value); }
+        public string DriveFolderID { get; set; }
         public string SheetRange { get => GetSheetRange(sheetRange); set => sheetRange = value; }
         public string NoteTypesString { get; set; }
         public string[] NoteTypesArr { get => NoteTypesString.Split(',').ToArray(); }
