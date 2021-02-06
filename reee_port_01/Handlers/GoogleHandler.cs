@@ -1,18 +1,20 @@
 ﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
 using System.IO;
 using System.Threading;
 
 namespace reee_port_01
 {
-    public abstract class GoogleHandler
+    public class GoogleHandler
     {
         protected string ApplicationName = "reeeport";
         protected UserCredential credential;
 
-        protected string[] Scopes;
+        private readonly string[] Scopes = { DriveService.Scope.Drive, SheetsService.Scope.Spreadsheets };
 
-        public void InitCredentialsWithScopes()
+        public GoogleHandler()
         {
             using (var stream = new FileStream(@"Resources\credentials.json", FileMode.Open, FileAccess.Read))
             {
@@ -26,9 +28,5 @@ namespace reee_port_01
             }
         }
 
-        public void SetScopes(string[] scopes)
-        {
-            Scopes = scopes;
-        }
     }
 }

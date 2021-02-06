@@ -17,10 +17,6 @@ namespace reee_port_01
 
         public GoogleSheetHandler()
         {
-            SetScopes(new string[] { SheetsService.Scope.Spreadsheets });
-
-            InitCredentialsWithScopes();
-
             service = new SheetsService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,

@@ -9,21 +9,15 @@ namespace reee_port_01
 {
     public class GoogleDriveHandler : GoogleHandler
     {
-
         private DriveService service;
 
         public GoogleDriveHandler()
         {
-            SetScopes(new string[] { DriveService.Scope.Drive });
-
-            InitCredentialsWithScopes();
-
             service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-
         }
 
         public void UploadFile(string filePath, string folderId)
@@ -41,7 +35,6 @@ namespace reee_port_01
                 request = service.Files.Create(file, stream, "");
                 request.UploadAsync().Wait();
             }
-
         }
     }
 }
