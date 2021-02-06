@@ -12,7 +12,7 @@ namespace reee_port_01
         protected string ApplicationName = "reeeport";
         protected UserCredential credential;
 
-        private readonly string[] Scopes = { DriveService.Scope.Drive, SheetsService.Scope.Spreadsheets };
+        private readonly string[] Scopes = { DriveService.Scope.DriveFile, SheetsService.Scope.Spreadsheets };
 
         public GoogleHandler()
         {

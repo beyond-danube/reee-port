@@ -87,7 +87,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Handlers\GoogleHandler.cs" />
-    <Compile Include="Handlers\GoogleDriveHandler.cs" />
+    <Compile Include="Handlers\GoogleHandlerDrive.cs" />
+    <Compile Include="Handlers\GoogleHandlerSheets.cs" />
     <Compile Include="Views\PreferencesWindow.xaml.cs">
       <DependentUpon>PreferencesWindow.xaml</DependentUpon>
     </Compile>
@@ -95,7 +96,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Handlers\GoogleSheetsHandler.cs" />
     <Compile Include="Notes\Note.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Views\App.xaml.cs">

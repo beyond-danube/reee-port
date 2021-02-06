@@ -14,7 +14,6 @@ namespace reee_port_01
 
         private SheetsService service;
 
-
         public GoogleHandlerSheet()
         {
             service = new SheetsService(new BaseClientService.Initializer()
@@ -26,16 +25,16 @@ namespace reee_port_01
             RequestBody = new ValueRange();
         }
 
-        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange)
+        public void AppendToSheet(Note note, string spreadsheetID, string sheetRange, string attachmentsFolderLink)
         {
 
             string spreadsheetId = spreadsheetID;
             string range = sheetRange;
 
-            AppendRequest.ValueInputOptionEnum valueInputOption = AppendRequest.ValueInputOptionEnum.RAW;
+            AppendRequest.ValueInputOptionEnum valueInputOption = AppendRequest.ValueInputOptionEnum.USERENTERED;
             AppendRequest.InsertDataOptionEnum insertDataOption = AppendRequest.InsertDataOptionEnum.INSERTROWS;
 
-            var arr = new string[] { note.NoteType, note.NoteContent, note.Id, note.NoteRecordtime};
+            var arr = new string[] { note.NoteType, note.NoteContent, note.NoteRecordtime, attachmentsFolderLink};
 
             RequestBody.Values = new List<IList<object>> { arr };
 

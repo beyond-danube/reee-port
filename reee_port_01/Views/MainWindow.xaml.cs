@@ -59,14 +59,24 @@ namespace reee_port_01
 
                 try
                 {
-                    sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
 
-                    if (note.AttachedFiles.Length > 0)
+
+                    if (note.AttachedFiles != null && note.AttachedFiles.Length > 0)
                     {
+                        string driveSubFolderId = driveHandler.CreateFolder(note.Id, settings.DriveFolderID);
+
+                        //sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "https://drive.google.com/drive/u/0/folders/" + driveSubFolderId);
+                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "=HYPERLINK(\"https://drive.google.com/drive/u/0/folders/" + driveSubFolderId + "\"" + ", \"Attachments\")");
+                        
                         foreach (var file in note.AttachedFiles)
                         {
-                            driveHandler.UploadFile(file, settings.DriveFolderID);
+                            driveHandler.UploadFile(file, driveSubFolderId);
                         }
+                    }
+
+                    else
+                    {
+                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "");
                     }
                 }
                 catch (Exception)

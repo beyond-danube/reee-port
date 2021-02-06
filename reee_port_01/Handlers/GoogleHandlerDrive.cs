@@ -22,10 +22,11 @@ namespace reee_port_01
 
         public void UploadFile(string filePath, string folderId)
         {
+
             var file = new File()
             {
                 Name = Path.GetFileName(filePath),
-                Parents = new List<string>() { folderId },
+                Parents = new List<string>() { folderId }
             };
 
             FilesResource.CreateMediaUpload request;
@@ -35,6 +36,22 @@ namespace reee_port_01
                 request = service.Files.Create(file, stream, "");
                 request.UploadAsync().Wait();
             }
+        }
+
+        public string CreateFolder(string folderName, string parentFolderId)
+        {
+            var folder = new File()
+            {
+                Name = folderName,
+                MimeType = "application/vnd.google-apps.folder",
+                Parents = new List<string>() { parentFolderId }
+            };
+
+            FilesResource.CreateRequest request = service.Files.Create(folder);
+
+            var newFolder = request.Execute();
+
+            return newFolder.Id;
         }
     }
 }
