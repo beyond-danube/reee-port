@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
+using System.Collections.Generic;
 
 namespace reeeport
 {
@@ -20,7 +21,7 @@ namespace reeeport
 
         PreferencesWindow pw = new PreferencesWindow();
 
-        private string[] draggedFiles;
+        private List<string> draggedFiles = new List<string>();
 
         public MainWindow()
         {
@@ -52,7 +53,7 @@ namespace reeeport
             if (e.Key == Key.Enter && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
             {
 
-                Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles);
+                Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles.ToArray());
 
                 sheetHandler = sheetHandler == null ? new GoogleHandlerSheet() : sheetHandler;
                 driveHandler = driveHandler == null ? new GoogleHandlerDrive() : driveHandler;
@@ -65,7 +66,6 @@ namespace reeeport
                     {
                         string driveSubFolderId = driveHandler.CreateFolder(note.Id, settings.DriveFolderID);
 
-                        //sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "https://drive.google.com/drive/u/0/folders/" + driveSubFolderId);
                         sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "=HYPERLINK(\"https://drive.google.com/drive/u/0/folders/" + driveSubFolderId + "\"" + ", \"Attachments\")");
                         
                         foreach (var file in note.AttachedFiles)
@@ -84,6 +84,7 @@ namespace reeeport
                     MessageBox.Show("Something went wrong, and unfortunately we have no idea what exactly, since this this message handles every possible wrong scenario.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Google Drive");                     
                 }
 
+                draggedFiles.Clear();
                 NoteField.Clear();
             }       
 
@@ -112,7 +113,9 @@ namespace reeeport
 
         private void NoteField_Drop(object sender, DragEventArgs e)
         {
-            draggedFiles = e.Data.GetData(DataFormats.FileDrop) as string[];
+            e.Handled = true;
+            e.Effects = DragDropEffects.Copy;
+            draggedFiles.AddRange(e.Data.GetData(DataFormats.FileDrop) as string[]);          
         }
     }
 }
