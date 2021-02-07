@@ -18,7 +18,7 @@
             <TextBlock x:Name="NoteTypeHelp" Margin="0,42,20,0" TextWrapping="Wrap" Text="Key ↑ or ↓" VerticalAlignment="Top" Foreground="Silver" Height="18" HorizontalAlignment="Right" Width="53"/>
             <TextBlock x:Name="NoteFiledHelp" Margin="0,42,19.6,0" TextWrapping="Wrap" Text="Ctrl + Enter" VerticalAlignment="Top" Foreground="Silver" HorizontalAlignment="Right" Width="65" Grid.Column="1" Height="18"/>
             <Button x:Name="Settings" Content="Settings" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" BorderBrush="White" Background="{x:Null}" Margin="0,40,0,0" HorizontalContentAlignment="Left" Foreground="Silver" Height="20" Click="OpenPrefs"/>
-            <TextBlock x:Name="NoteFiledHelp_Copy" Margin="178,42,180,0" TextWrapping="Wrap" Text="Attachment ➝ Drop File" VerticalAlignment="Top" Foreground="Silver" Grid.Column="1" Height="18"/>
+            <TextBlock x:Name="NoteFiledHelp_Copy" Margin="80,42,0,0" TextWrapping="Wrap" Text="Attachment ➝ Drop Files" VerticalAlignment="Top" Foreground="Silver" Grid.Column="1" Height="18" HorizontalAlignment="Left" Width="145"/>
         </Grid>
     </StackPanel>
 </Window>
