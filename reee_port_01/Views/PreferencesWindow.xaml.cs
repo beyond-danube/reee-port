@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace reee_port_01
+namespace reeeport
 {
     /// <summary>
     /// Interaction logic for PreferencesWindow.xaml

@@ -1,21 +1,23 @@
-﻿<Window x:Class="reee_port_01.PreferencesWindow"
+﻿<Window x:Class="reeeport.PreferencesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:reee_port_01"
+        xmlns:local="clr-namespace:reeeport"
         mc:Ignorable="d"
         Title="reee: preferences" Height="270" Width="600" ResizeMode="CanMinimize" Closing="Closing_Event">
     <Grid x:Name="PrefWindowGrid" Margin="0,0,0.6,-0.2">
-        <TextBlock x:Name="Spreadsheet_setting_info" VerticalAlignment="Top" TextWrapping="Wrap" Text="Google Spreadsheet settings" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="200" Margin="25,25,0,0" Height="20" FontSize="14" />
-        <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,75,110,0" HorizontalAlignment="Right" />
-        <TextBlock x:Name="SheetRangeHelp" TextWrapping="Wrap" Text="Sheet!Range" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,75,25,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="67" />
-        <TextBox x:Name="SpreadsheetID" Text="{Binding SpreadsheetID, Mode=TwoWay}" TabIndex="0" Height="25" Margin="25,50,110,0" TextWrapping="Wrap" VerticalAlignment="Top"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" />
-        <TextBox x:Name="SheetRange" Text="{Binding SheetRange, Mode=TwoWay}" TabIndex="1" Height="25" Margin="0,50,25,0" TextWrapping="Wrap" VerticalAlignment="Top" AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" HorizontalAlignment="Right" Width="80" />
-        <TextBlock x:Name="NoteTypes" VerticalAlignment="Top" TextWrapping="Wrap" Text="Note Types settings" Foreground="#FF7F7F7F" Margin="25,100,0,0" Height="20" FontSize="14" HorizontalAlignment="Left" Width="200" />
-        <TextBlock x:Name="NoteTypes_Help" TextWrapping="Wrap" Text="Comma separated, applied on restart" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,150,25,0" HorizontalAlignment="Right"/>
-        <TextBlock x:Name="NoteTypes_setting_info" VerticalAlignment="Top" TextWrapping="Wrap" Text="Application settings" Foreground="#FF7F7F7F" Margin="25,175,0,0" Height="20" FontSize="14" HorizontalAlignment="Left" Width="200" />
-        <TextBox x:Name="NoteTypesString" Text="{Binding NoteTypesString, Mode=TwoWay}" TabIndex="2" Height="25" Margin="25,125,25,0" TextWrapping="Wrap" VerticalAlignment="Top"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" />
-        <CheckBox x:Name="AlwaysOnTop" IsChecked="{Binding AlwaysOnTop, Mode=TwoWay}" TabIndex="3" Content="Always on Top" Margin="25,200,0,0" HorizontalAlignment="Left" Width="130" BorderBrush="#FFABADB3" Foreground="#FF7F7F7F" RenderTransformOrigin="0.5,0.5" Height="25" VerticalAlignment="Top" />
+        <TextBlock x:Name="Spreadsheet_setting_info" VerticalAlignment="Top" TextWrapping="Wrap" Text="Google Spreadsheet settings" Foreground="#FF7F7F7F" HorizontalAlignment="Left" Width="200" Margin="25,10,0,0" Height="20" FontSize="14" />
+        <TextBlock x:Name="SpreadsheetID_Help" TextWrapping="Wrap" Text="Google Spreadsheet URL or ID" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,55,110.4,0" HorizontalAlignment="Right" />
+        <TextBlock x:Name="SheetRangeHelp" TextWrapping="Wrap" Text="Sheet!Range" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,55,25.4,0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="67" />
+        <TextBox x:Name="SpreadsheetID" Text="{Binding SpreadsheetID, Mode=TwoWay}" TabIndex="0" Height="25" Margin="25,30,110.4,0" TextWrapping="Wrap" VerticalAlignment="Top"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" />
+        <TextBox x:Name="SheetRange" Text="{Binding SheetRange, Mode=TwoWay}" TabIndex="1" Height="25" Margin="0,30,25.4,0" TextWrapping="Wrap" VerticalAlignment="Top" AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" HorizontalAlignment="Right" Width="80" />
+        <TextBlock x:Name="NoteTypes" VerticalAlignment="Top" TextWrapping="Wrap" Text="Note Types settings" Foreground="#FF7F7F7F" Margin="25,123,0,0" Height="20" FontSize="14" HorizontalAlignment="Left" Width="200" />
+        <TextBlock x:Name="NoteTypes_Help" TextWrapping="Wrap" Text="Comma separated, applied on restart" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,168,25.4,0" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="NoteTypes_setting_info" VerticalAlignment="Top" TextWrapping="Wrap" Text="Application settings" Foreground="#FF7F7F7F" Margin="25,184,0,0" Height="20" FontSize="14" HorizontalAlignment="Left" Width="200" />
+        <TextBox x:Name="NoteTypesString" Text="{Binding NoteTypesString, Mode=TwoWay}" TabIndex="2" Height="25" Margin="25,143,25.4,0" TextWrapping="Wrap" VerticalAlignment="Top"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" />
+        <CheckBox x:Name="AlwaysOnTop" IsChecked="{Binding AlwaysOnTop, Mode=TwoWay}" TabIndex="3" Content="Always on Top" Margin="25,204,0,0" HorizontalAlignment="Left" Width="130" BorderBrush="#FFABADB3" Foreground="#FF7F7F7F" RenderTransformOrigin="0.5,0.5" Height="25" VerticalAlignment="Top" />
+        <TextBox x:Name="DriveFolderID" Text="{Binding DriveFolderID, Mode=TwoWay}" TabIndex="0" Height="25" Margin="25,80,25.4,0" TextWrapping="Wrap" VerticalAlignment="Top"  AutoWordSelection="True" VerticalContentAlignment="Center" Foreground="#FF7F7F7F" />
+        <TextBlock x:Name="DriveFolderID_Help" TextWrapping="Wrap" Text="Google Drive Folder ID" VerticalAlignment="Top" Foreground="Silver" Height="20" Margin="0,105,25.4,0" HorizontalAlignment="Right" />
     </Grid>
 </Window>

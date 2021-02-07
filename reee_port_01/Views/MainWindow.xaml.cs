@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
 
-namespace reee_port_01
+namespace reeeport
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -13,11 +13,14 @@ namespace reee_port_01
     {
         private ReeeportSettings settings;
   
-        private GoogleSheetHandler sheetHandler;
+        private GoogleHandlerSheet sheetHandler;
+        private GoogleHandlerDrive driveHandler;
 
         private string settingsPath = Environment.CurrentDirectory + @"\Resources\reeeportsettings.xml";
 
         PreferencesWindow pw = new PreferencesWindow();
+
+        private string[] draggedFiles;
 
         public MainWindow()
         {
@@ -32,8 +35,9 @@ namespace reee_port_01
         {
 
             settings = ReeeportSettings.SettingsReader(settingsPath);
-            sheetHandler = new GoogleSheetHandler();
-    
+            sheetHandler = null;
+            driveHandler = null;
+
             NoteType.ItemsSource = settings.NoteTypesArr;
             NoteType.SelectedIndex = 0;
 
@@ -48,23 +52,39 @@ namespace reee_port_01
             if (e.Key == Key.Enter && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
             {
 
-                Note note = new Note(NoteType.Text, NoteField.Text);
+                Note note = new Note(NoteType.Text, NoteField.Text, draggedFiles);
 
-                if (settings.GenarateGoogleSheet == true)
+                sheetHandler = sheetHandler == null ? new GoogleHandlerSheet() : sheetHandler;
+                driveHandler = driveHandler == null ? new GoogleHandlerDrive() : driveHandler;
+
+                try
                 {
-                    try
+
+
+                    if (note.AttachedFiles != null && note.AttachedFiles.Length > 0)
                     {
-                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange);
+                        string driveSubFolderId = driveHandler.CreateFolder(note.Id, settings.DriveFolderID);
+
+                        //sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "https://drive.google.com/drive/u/0/folders/" + driveSubFolderId);
+                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "=HYPERLINK(\"https://drive.google.com/drive/u/0/folders/" + driveSubFolderId + "\"" + ", \"Attachments\")");
+                        
+                        foreach (var file in note.AttachedFiles)
+                        {
+                            driveHandler.UploadFile(file, driveSubFolderId);
+                        }
                     }
-                    catch (Exception)
+
+                    else
                     {
-                        MessageBox.Show("Cannot write note to spreadsheet.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Spreadsheet");                     
+                        sheetHandler.AppendToSheet(note, settings.SpreadsheetID, settings.SheetRange, "");
                     }
-                    
-                }            
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Something went wrong, and unfortunately we have no idea what exactly, since this this message handles every possible wrong scenario.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Google Drive");                     
+                }
 
                 NoteField.Clear();
-
             }       
 
         }
@@ -85,5 +105,14 @@ namespace reee_port_01
             pw.Show();
         }
 
+        private void NoteField_DragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void NoteField_Drop(object sender, DragEventArgs e)
+        {
+            draggedFiles = e.Data.GetData(DataFormats.FileDrop) as string[];
+        }
     }
 }
