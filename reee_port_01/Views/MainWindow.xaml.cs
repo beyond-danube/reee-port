@@ -81,7 +81,7 @@ namespace reeeport
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Cannot write note to spreadsheet.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Spreadsheet");                     
+                    MessageBox.Show("Something went wrong, and unfortunately we have no idea what exactly, since this this message handles every possible wrong scenario.\n\nPlease, check following:\n • Google Spreadsheet URL and Sheet Name are correct.\n • Internet connection is fine.\n", "Cannot Write to Google Drive");                     
                 }
 
                 NoteField.Clear();
