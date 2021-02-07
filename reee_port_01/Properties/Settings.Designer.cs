@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace reee_port_01.Properties
+namespace reeeport.Properties
 {
 
 

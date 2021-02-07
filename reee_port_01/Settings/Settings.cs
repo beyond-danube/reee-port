@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace reee_port_01
+namespace reeeport
 {
     [Serializable]
     public class ReeeportSettings
